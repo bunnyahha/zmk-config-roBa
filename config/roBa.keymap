@@ -63,10 +63,16 @@
             label = "MKP_EXIT_AML";
         };
 
-        parenthesis: parenthesis {
+         parenthesis: parenthesis {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LANG_HANJA &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp LEFT_ARROW>;
+            // ▼ ここから追加・修正 ▼
+            wait-ms = <30>;       // キー入力間の待機時間（ミリ秒）
+            tap-ms = <30>;        // キーを押し込む時間（ミリ秒）
+            bindings = <&kp LANG_HANJA>,
+                       <&macro_wait_time 100>, // IME切り替え完了を待つ（重要）
+                       <&kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp LEFT_ARROW>;
+            // ▲ ここまで ▲
             label = "parenthesis";
         };
     };
